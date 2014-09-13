@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  geoId: 1
+  geoYear: 1
+  geoName: MyString
+  geoValue: MyString
+  dataId: 1
+  dataYear: 1
+  dataName: MyString
+  dataValue: 1.5
+  scale: 
+
+two:
+  geoId: 1
+  geoYear: 1
+  geoName: MyString
+  geoValue: MyString
+  dataId: 1
+  dataYear: 1
+  dataName: MyString
+  dataValue: 1.5
+  scale: 

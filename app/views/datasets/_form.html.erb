@@ -1,0 +1,35 @@
+<%= form_for(@dataset) do |f| %>
+  <% if @dataset.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dataset.errors.count, "error") %> prohibited this dataset from being saved:</h2>
+
+      <ul>
+      <% @dataset.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+	<%= f.label :Geography %><br>
+	<%= f.select :geoName, [
+	['NIS Neighborhoods','NIS Neighborhoods'],['Zipcodes','Zipcodes'],['Points','Points'],
+	['2000 Census Tracts','2000 Census Tracts'],['2000 Census Block Groups','2000 Census Block Groups'],
+	['2010 Census Tracts','2010 Census Tracts'],['2010 Census Block Groups','2010 Census Block Groups'],
+	] %>
+	
+  </div>
+  
+  <div class="field">
+    <%= f.label :Year %><br>
+    <%= f.number_field :dataYear %>
+  </div>
+  <div class="field">
+    <label for="dataset_dataName">Data Name</label><br>
+    <%= f.text_field :dataName %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

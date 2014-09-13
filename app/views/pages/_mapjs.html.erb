@@ -1,0 +1,149 @@
+var map;
+var geoData;
+    require([
+		"dojo/dom-construct",
+		"esri/Color",
+		"esri/dijit/Geocoder",
+		"esri/dijit/Popup",
+		"esri/InfoTemplate",
+
+		"esri/layers/ArcGISDynamicMapServiceLayer",
+		"esri/map",
+	  //"esri/layers/FeatureLayer",
+	  //"esri/renderers/ClassBreaksRenderer",
+		"esri/symbols/SimpleFillSymbol",
+		"esri/tasks/query",
+		"esri/tasks/QueryTask",
+		"esri/symbols/SimpleLineSymbol", "dojo/domReady!"], 
+	function(
+		domConstruct, Color, Geocoder, Popup, InfoTemplate, 
+		ArcGISDynamicMapServiceLayer, Map, 
+		//FeatureLayer, 
+		//ClassBreaksRenderer, 
+		Query,QueryTask,
+		SimpleFillSymbol, SimpleLineSymbol
+    ){
+		var sls = new SimpleLineSymbol("solid", new Color("#444444"), 3);
+		var sfs = new SimpleFillSymbol("solid", sls, new Color([68, 68, 68, 0.25]));
+
+		function compare(a,b) {
+			if (a.geoValue < b.geoValue)
+				return -1;
+			if (a.geoValue > b.geoValue)
+				return 1;
+			return 0;
+		};
+		
+		function compareb(a,b) {
+			if (a.attributes.NHOODNAME < b.attributes.NHOODNAME)
+				return -1;
+			if (a.attributes.NHOODNAME > b.attributes.NHOODNAME)
+				return 1;
+			return 0;
+		};
+		
+		function comparec(a,b) {
+			if (a.dataValue < b.dataValue)
+				return -1;
+			if (a.dataValue > b.dataValue)
+				return 1;
+			return 0;
+		};
+		
+		function getBreaks() {
+			var breakLine=geoData.length/5;
+			for (var i=0; i<geoData.length; i++) {
+				if ((i+1)<=breakLine)
+					geoData[i].breaks=0;
+				else if ((i+1)<=breakLine*2)
+					geoData[i].breaks=1;
+				else if ((i+1)<=breakLine*3)
+					geoData[i].breaks=2;
+				else if ((i+1)<=breakLine*4)
+					geoData[i].breaks=3;
+				else 
+					geoData[i].breaks=4;
+			}
+		};
+		
+		geoData=<%=raw @geo_data.to_json %>;
+		geoData.sort(comparec);
+		getBreaks();
+		geoData.sort(compare);
+		
+		var popup = new Popup({
+			fillSymbol: sfs,
+			lineSymbol: null,
+			markerSymbol: null
+		}, domConstruct.create("div"));
+
+		map = new esri.Map("ui-esri-map", {
+			basemap: "topo",
+			center: [-75.1590, 40.0000], // long, lat
+			zoom: 11,
+			sliderStyle: "small",
+			infoWindow: popup
+		});
+	  
+		//initialize query task
+		var queryTask = new esri.tasks.QueryTask("http://mylbarc-2091658692.us-east-1.elb.amazonaws.com/ArcGIS/rest/services/PHIL_NHBD/MapServer/0");
+		var query = new esri.tasks.Query();
+		query.outFields = ["NHOODNAME"];
+		query.where= "1=1";
+		query.outSpatialReference = {wkid:102100};
+		query.returnGeometry = true;
+		queryTask.execute(query, showResults, showError);
+		
+		function showError(error){
+			alert(error);
+		};
+		
+		function showResults(featureSet) {
+			//remove all graphics on the maps graphics layer
+			map.graphics.clear();
+			
+			// Symbol for unmattached data
+			symbol = new esri.symbol.SimpleFillSymbol().setColor(new Color([0, 0, 0, 0.4])).setOutline(new SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new Color([255,0,0]), 2));
+			// Symbols for the 5 breaks
+			symbolBreak1 = new esri.symbol.SimpleFillSymbol().setColor(new Color([111, 0, 255, 0.5])).setOutline(new SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new Color([0,0,0]), 2));
+			symbolBreak2 = new esri.symbol.SimpleFillSymbol().setColor(new Color([0, 0, 255, 0.5])).setOutline(new SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new Color([0,0,0]), 2));
+			symbolBreak3 = new esri.symbol.SimpleFillSymbol().setColor(new Color([255, 255, 0, 0.5])).setOutline(new SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new Color([0,0,0]), 2));
+			symbolBreak4 = new esri.symbol.SimpleFillSymbol().setColor(new Color([255, 165, 0, 0.5])).setOutline(new SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new Color([0,0,0]), 2));
+			symbolBreak5 = new esri.symbol.SimpleFillSymbol().setColor(new Color([255, 0, 0, 0.5])).setOutline(new SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new Color([0,0,0]), 2));
+			
+			//Performance enhancer - assign featureSet array to a single variable.
+			var resultFeatures = featureSet.features;
+			resultFeatures.sort(compareb);
+			
+			//Loop through each feature returned
+			for (var i=0, il=resultFeatures.length; i<il; i++) {
+				//Get the current feature from the featureSet.
+				//Feature is a graphic
+				var graphic = resultFeatures[i];
+				
+				//Set symbols
+				if (resultFeatures[i].attributes.NHOODNAME==geoData[i].geoValue){
+					if (geoData[i].breaks==0)
+						graphic.setSymbol(symbolBreak1);
+					else if (geoData[i].breaks==1)
+						graphic.setSymbol(symbolBreak2);
+					else if (geoData[i].breaks==2)
+						graphic.setSymbol(symbolBreak3);
+					else if (geoData[i].breaks==3) 
+						graphic.setSymbol(symbolBreak4);
+					else
+						graphic.setSymbol(symbolBreak5);
+				}
+				else{// unmatched data.
+					//alert(resultFeatures[i].attributes.NHOODNAME + " " + geoData[i].geoValue);
+					graphic.setSymbol(symbol);
+				}
+				
+				//Set the infoTemplate.
+				//graphic.setInfoTemplate(infoTemplate);
+
+				//Add graphic to the map graphics layer.
+				map.graphics.add(graphic);
+			}
+		};
+    });

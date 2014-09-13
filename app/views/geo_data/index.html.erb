@@ -1,0 +1,39 @@
+<h1>Listing geo_data</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Geoid</th>
+      <th>Geoyear</th>
+      <th>Geoname</th>
+      <th>Geovalue</th>
+      <th>Dataid</th>
+      <th>Datayear</th>
+      <th>Dataname</th>
+      <th>Datavalue</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @geo_data.each do |geo_datum| %>
+      <tr>
+        <td><%= geo_datum.geoId %></td>
+        <td><%= geo_datum.geoYear %></td>
+        <td><%= geo_datum.geoName %></td>
+        <td><%= geo_datum.geoValue %></td>
+        <td><%= geo_datum.dataId %></td>
+        <td><%= geo_datum.dataYear %></td>
+        <td><%= geo_datum.dataName %></td>
+        <td><%= geo_datum.dataValue %></td>
+        <td><%= link_to 'Show', geo_datum %></td>
+        <td><%= link_to 'Edit', edit_geo_datum_path(geo_datum) %></td>
+        <td><%= link_to 'Destroy', geo_datum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Geo datum', new_geo_datum_path %>

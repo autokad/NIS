@@ -1,0 +1,13 @@
+<div class="jumbotron">
+	<h1>Your Neighbouhood Maps</h1>
+	<p>This is a place where you can view data and upload data and create your own maps from it</p>
+	<p>Your city, your neighborhood.</p>
+	<p>
+	<% if user_signed_in? %>
+		<a class="btn btn-lg btn-primary" href="datasets/new" role="button">Get started &raquo;</a>
+	<% else %>
+		<a class="btn btn-lg btn-primary" href="users/sign_up" role="button">Get started &raquo;</a>
+	<% end %>
+	</p>
+</div>
+						

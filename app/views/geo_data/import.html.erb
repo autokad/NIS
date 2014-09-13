@@ -1,0 +1,4 @@
+<%= form_tag geo_data_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import CSV" %>
+<% end %>

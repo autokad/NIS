@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Geoid:</strong>
+  <%= @geo_datum.geoId %>
+</p>
+
+<p>
+  <strong>Geoyear:</strong>
+  <%= @geo_datum.geoYear %>
+</p>
+
+<p>
+  <strong>Geoname:</strong>
+  <%= @geo_datum.geoName %>
+</p>
+
+<p>
+  <strong>Geovalue:</strong>
+  <%= @geo_datum.geoValue %>
+</p>
+
+<p>
+  <strong>Dataid:</strong>
+  <%= @geo_datum.dataId %>
+</p>
+
+<p>
+  <strong>Datayear:</strong>
+  <%= @geo_datum.dataYear %>
+</p>
+
+<p>
+  <strong>Dataname:</strong>
+  <%= @geo_datum.dataName %>
+</p>
+
+<p>
+  <strong>Datavalue:</strong>
+  <%= @geo_datum.dataValue %>
+</p>
+
+<%= link_to 'Destroy', @geo_datum, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Edit', edit_geo_datum_path(@geo_datum) %> |
+<%= link_to 'Back', geo_data_path %>

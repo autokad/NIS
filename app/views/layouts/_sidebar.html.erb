@@ -1,0 +1,51 @@
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li>
+                   <h4>Data</h4>
+                </li>
+                <li>
+                    <a href="#">Tables</a>
+                </li>
+                <li>
+                    <a href="#">Map an Address</a>
+                </li>
+                <li>
+                    <%= link_to "Maps", maps_path %>
+                </li>
+				
+                <li>
+                     <h4>About</h4>
+                </li>
+                <li>
+                    <a href="#">Data Dictionary</a>
+                </li>
+                <li>
+                    <a href="#">Feedback</a>
+                </li>
+                <li>
+                    <a href="#">Help</a>
+                </li>
+				<li>
+					<% if user_signed_in? %>
+						<h4>User Admin</h4>
+					<li>
+						<%= link_to "New Data Set", new_dataset_path %>
+					</li>
+					<li>
+						<%= link_to "View Data Sets", datasets_path %>
+					</li>
+					<li>
+						<%= link_to "New Map", new_map_path %>
+					</li>
+					<li>
+						<%= link_to "View Maps", maps_path %>
+					</li>
+					<li>
+						<%= link_to "Edit Users", users_path %>
+					</li>
+					<% end %>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->

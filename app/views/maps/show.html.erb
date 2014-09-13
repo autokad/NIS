@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Name:</strong>
+  <%= @map.name %>
+</p>
+
+<p>
+  <strong>By:</strong>
+  <%= @map.user.username %>
+</p>
+
+<p>
+  <strong>Dataset:</strong>
+  <%= @map.dataset.dataName %> <%= @map.dataset.dataYear %>
+</p>
+ <script>
+ <%= render :partial => "mapjs" %>
+ </script>
+<div id="ui-esri-map" style="height: 700px;'></div>
+<div id="ui-esri-dijit-geocoder"></div>
+
+<hr/>
+
+
+
+
+<%= link_to 'Edit', edit_map_path(@map) %> |
+<%= link_to 'Back', maps_path %>

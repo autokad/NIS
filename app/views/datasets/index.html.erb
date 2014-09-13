@@ -1,0 +1,31 @@
+<h1>Listing datasets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Geography</th>
+      <th>Year</th>
+      <th>Data Name</th>
+      <th>Username</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @datasets.each do |dataset| %>
+      <tr>
+        <td><%= dataset.geoName %></td>
+        <td><%= dataset.dataYear %></td>
+        <td><%= dataset.dataName %></td>
+        <td><%= dataset.user.username %></td>
+        <td><%= link_to 'Show', dataset %></td>
+        <td><%= link_to 'Edit', edit_dataset_path(dataset) %></td>
+        <td><%= link_to 'Destroy', dataset, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dataset', new_dataset_path %>

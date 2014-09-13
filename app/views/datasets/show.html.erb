@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Geography:</strong>
+  <%= @dataset.geoName %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @dataset.dataYear %>
+</p>
+
+<p>
+  <strong>Data Name:</strong>
+  <%= @dataset.dataName %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @dataset.user.username %>
+  
+<%= form_tag import_dataunits_path, multipart: true do %>
+	<%= file_field_tag :file %>
+	<input id="dataunit_user_id" name="dataunit[user_id]" type="hidden" value="<%= @dataset.user.id %>">
+	<input id="dataunit_dataset_id" name="dataunit[dataset_id]" type="hidden" value="<%= @dataset.id %>">
+	<%= submit_tag "Import CSV" %>
+<% end %>
+
+</p>
+<br/><br/>
+<%= link_to 'Edit', edit_dataset_path(@dataset) %> |
+<%= link_to 'Back', datasets_path %>
+<br/><br/>
+<p><strong>Attached Data</strong></p>
+<hr/>
+<table>
+  <thead>
+    <tr>
+      <th>Geovalue</th>
+      <th>Datavalue</th>
+      <th>Dataset</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dataset.dataunits.each do |dataunit| %>
+      <tr>
+        <td><%= dataunit.geoValue %></td>
+        <td><%= dataunit.dataValue %></td>
+        <td><%= dataunit.dataset.try(:dataName) %></td>
+        <td><%= dataunit.user.try(:username) %></td>
+        <td><%= link_to 'Show', dataunit %></td>
+        <td><%= link_to 'Edit', edit_dataunit_path(dataunit) %></td>
+        <td><%= link_to 'Destroy', dataunit, method: :delete, data: {  } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+

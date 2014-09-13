@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  geoValue: MyString
+  dataValue: 1.5
+  dataset_id: 
+  user_id: 
+
+two:
+  geoValue: MyString
+  dataValue: 1.5
+  dataset_id: 
+  user_id: 

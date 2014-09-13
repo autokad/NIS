@@ -1,0 +1,65 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, :html => {:class => "form-horizontal"},  url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+  
+  <div class="row">
+		<div class="form-group">
+			<div class="col-sm-3">
+				<input type="username" class="form-control" name="username" id="username" placeholder="Username">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="form-group">
+			<div class="col-sm-3">
+				<input type="fname" class="form-control" name="fname" id="fname" placeholder="First Name">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="form-group">
+			<div class="col-sm-3">
+				<input type="lname" class="form-control" name="lname" id="lname" placeholder="Last Name">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="form-group">
+			<div class="col-sm-3">
+				<input id="user_email" name="user[email]" type="email" value="" placeholder="email" class="form-control">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="form-group">
+			<div class="col-sm-3">
+				<input autocomplete="off" id="user_password" name="user[password]" type="password" placeholder="Password" class="form-control">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="form-group">
+			<div class="col-sm-3">
+				<input autocomplete="off" id="user_password_confirmation" name="user[password_confirmation]" type="password" placeholder="Password Confirmation" class="form-control">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="form-group">
+			<div class="col-sm-3" style="text-align:center">
+				<input name="commit" type="submit" value="Sign up" class="btn btn-default">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="form-group">
+			<div class="col-sm-3" style="text-align:center">
+				<%= render "devise/shared/links" %>
+			</div>
+		</div>
+	</div>
+  <div></div>
+<% end %>
+
+<br/>

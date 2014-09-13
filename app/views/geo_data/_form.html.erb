@@ -1,0 +1,49 @@
+<%= form_for(@geo_datum) do |f| %>
+  <% if @geo_datum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@geo_datum.errors.count, "error") %> prohibited this geo_datum from being saved:</h2>
+
+      <ul>
+      <% @geo_datum.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :geoId %><br>
+    <%= f.number_field :geoId %>
+  </div>
+  <div class="field">
+    <%= f.label :geoYear %><br>
+    <%= f.number_field :geoYear %>
+  </div>
+  <div class="field">
+    <%= f.label :geoName %><br>
+    <%= f.text_field :geoName %>
+  </div>
+  <div class="field">
+    <%= f.label :geoValue %><br>
+    <%= f.text_field :geoValue %>
+  </div>
+  <div class="field">
+    <%= f.label :dataId %><br>
+    <%= f.number_field :dataId %>
+  </div>
+  <div class="field">
+    <%= f.label :dataYear %><br>
+    <%= f.number_field :dataYear %>
+  </div>
+  <div class="field">
+    <%= f.label :dataName %><br>
+    <%= f.text_field :dataName %>
+  </div>
+  <div class="field">
+    <%= f.label :dataValue %><br>
+    <%= f.text_field :dataValue %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

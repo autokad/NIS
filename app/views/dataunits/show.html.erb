@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Geovalue:</strong>
+  <%= @dataunit.geoValue %>
+</p>
+
+<p>
+  <strong>Datavalue:</strong>
+  <%= @dataunit.dataValue %>
+</p>
+
+<p>
+  <strong>Dataset:</strong>
+  <%= @dataunit.dataset.dataName %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @dataunit.user.username %>
+</p>
+
+<%= link_to 'Edit', edit_dataunit_path(@dataunit) %> |
+<%= link_to 'Back', dataunits_path %>
