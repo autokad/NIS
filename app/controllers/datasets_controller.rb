@@ -61,6 +61,15 @@ class DatasetsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def download
+  send_file(
+    "#{Rails.root}/public/poverty.csv",
+    filename: "poverty.csv",
+    type: "application/pdf"
+  )
+    
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

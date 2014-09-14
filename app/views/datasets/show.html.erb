@@ -25,7 +25,8 @@
 	<input id="dataunit_dataset_id" name="dataunit[dataset_id]" type="hidden" value="<%= @dataset.id %>">
 	<%= submit_tag "Import CSV" %>
 <% end %>
-
+<br/><br/>
+<p> <%= link_to 'Download CSV', download_dataset_url %> to see an example of how the data should be formatted.</p>
 </p>
 <br/><br/>
 <%= link_to 'Edit', edit_dataset_path(@dataset) %> |

@@ -1,7 +1,7 @@
 <div class="container">
 <h1>Karl Dailey</h1>
 <h5>daileyk@upenn.edu</h5>
-<img src="/assets/ohiopyle.jpg"/>
+<%= image_tag("ohiopyle.jpg") %>
 	<br/>
 	<br/>
 	<h2>Professional Experience</h2>
@@ -23,7 +23,7 @@
 			<li>Develop Rich Internet Applications (RIA) using Flash Builder, ESRI API for FLEX, JavaScript, and Google Maps API such as 
 				<label class="control-label" style="text-align:left;display:inline;">
 								<a type="button" href="http://www.traumamaps.org" target="blank" id="popTrauma" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottoom" 
-								data-content="<img src='/assets/Trauma.jpg' width='360'>" data-original-title="" title="">
+								data-content="<%= image_tag("Trauma.jpg", :size => "180x180") %>
 								traumamaps.org</a></label>
 				 which generated 2.6 million hits <a href="http://content.time.com/time/health/article/0,8599,2083636,00.html" target="blank">(featured in TIME Magazine July 2011)</a></li>
 			<li>Developed Sandbox tools that allows researchers to build hospital systems and do research on the fly through ad-hoc and optimal selections.  The tool went above and beyond the clients expectations</li>
@@ -47,7 +47,7 @@
 			<small class="footnote">August 2010 - Present</small>
 		</div>
 		<div class="col-md-4 myRight">
-			<br/><a href="http://cml.upenn.edu/" target="blank"><img src="/assets/Penn2.png"/></a>
+			<br/><a href="http://cml.upenn.edu/" target="blank"><%= image_tag("Penn2.png") %></a>
 		</div>
 	</div>
 	<ul>
@@ -61,7 +61,7 @@
 			<small class="footnote">January 2005 - June 2007 </small>
 		</div>
 		<div class="col-md-4 myRight">
-			<br/><img src="/assets/MetaSource.png"/>
+			<br/><%= image_tag("MetaSource.png") %>
 		</div>
 	</div>
 	<ul>
@@ -79,7 +79,7 @@
 				<small class="footnote"><a href="http://www.oinkbay.com/" target="blank">oinkbay.com</a><br/> Pig sharing website created (with Ruby on Rails) and owned by me</small>
 			</div>
 			<div class="col-md-4 myRight">
-				<br/><a href="http://www.oinkbay.com/" target="blank"><img src="/assets/OinkBay.png"/></a>
+				<br/><a href="http://www.oinkbay.com/" target="blank"><%= image_tag("OinkBay.png") %></a>
 			</div>
 		</div>
 	<ul>
@@ -92,7 +92,7 @@
 			<small class="footnote"><a href="http://www.mappening.net/" target="blank">mappening.net</a><br/> Geospatial blog created by me with WordPress, under construction</small>
 		</div>
 		<div class="col-md-4 myRight">
-			<br/><a href="http://www.mappening.net/" target="blank"><img src="/assets/Mappening.png"/></a>
+			<br/><a href="http://www.mappening.net/" target="blank"><%= image_tag("Mappening.png") %></a>
 		</div>
 	</div>
 
@@ -109,7 +109,7 @@
 			<br/><small class="footnote">2014 - 2016 (Expected)</small>
 		</div>
 		<div class="col-md-4 myRight">
-			<br/><img src="/assets/Penn.png"/>
+			<br/><%= image_tag("Penn2.png") %>
 		</div>
 	</div>
 	<ul>
@@ -123,7 +123,7 @@
 			<br/><small class="footnote">2007 - 2009</small>
 		</div>
 		<div class="col-md-4 myRight">
-			<br/><img src="/assets/wharton-business-school.png"/>
+			<br/><%= image_tag("wharton-business-school.png") %>
 		</div>
 	</div>
 	<ul>
@@ -136,7 +136,7 @@
 			<br/><small class="footnote">2002 - 2004</small>
 		</div>
 		<div class="col-md-4 myRight">
-			<br/><img src="/assets/Penn-State-University.png"/>
+			<br/><%= image_tag("Penn-State-University.png") %>
 		</div>
 	</div>
 	<ul>
@@ -150,7 +150,7 @@
 			<br/><small class="footnote">1998 - 2002</small>
 		</div>
 		<div class="col-md-4 myRight">
-			<br/><img src="/assets/LaSalle.png"/>
+			<br/><%= image_tag("LaSalle.png") %>
 		</div>
 	</div>
 	<ul>

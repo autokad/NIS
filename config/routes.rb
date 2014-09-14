@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   resources :maps
   resources :datasets
-  
+  resources :datasets do
+    member do
+      get :download
+    end
+  end 
 	resources :dataunits
 	resources :dataunits do
 		collection { post :import }

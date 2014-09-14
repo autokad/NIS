@@ -3,4 +3,5 @@ class Dataset < ActiveRecord::Base
   has_many :dataunits, dependent: :destroy
   has_many :maps, dependent: :destroy
   validates :user_id, presence: true
+  
 end
