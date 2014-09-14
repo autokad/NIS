@@ -92,6 +92,8 @@ var geoData;
 		query.returnGeometry = true;
 		queryTask.execute(query, showResults, showError);
 		
+		 //initialize InfoTemplate
+        infoTemplate = new InfoTemplate("${CITY_NAME}", "Name : ${NHOODNAME}<br/> Value : ${dataValue}<br />");
 		function showError(error){
 			alert(error);
 		};
@@ -121,6 +123,7 @@ var geoData;
 				
 				//Set symbols
 				if (resultFeatures[i].attributes.NHOODNAME==geoData[i].geoValue){
+				graphic.attributes.dataValue=geoData[i].dataValue;
 					if (geoData[i].breaks==0)
 						graphic.setSymbol(symbolBreak1);
 					else if (geoData[i].breaks==1)
@@ -138,7 +141,7 @@ var geoData;
 				}
 				
 				//Set the infoTemplate.
-				//graphic.setInfoTemplate(infoTemplate);
+				graphic.setInfoTemplate(infoTemplate);
 
 				//Add graphic to the map graphics layer.
 				map.graphics.add(graphic);
