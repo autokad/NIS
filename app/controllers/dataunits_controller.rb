@@ -44,7 +44,7 @@ class DataunitsController < ApplicationController
 	def import
 		logger.debug "\n params #{params}"
 		Dataunit.import(params[:file],params[:dataunit][:dataset_id], current_user.id)
-		redirect_to dataunits_url, notice: "Data imported."
+		redirect_to datasets_url, notice: "Data imported."
 	end
 
   # PATCH/PUT /dataunits/1

@@ -5,13 +5,13 @@
                    <h4>Data</h4>
                 </li>
                 <li>
-                    <a href="#">Tables</a>
+					<%= link_to "Tables", datasets_path %>
                 </li>
-                <li>
+                <!--li>
                     <a href="#">Map an Address</a>
-                </li>
+                </li-->
                 <li>
-                    <%= link_to "Maps", maps_path %>
+					<%= link_to "View Maps", maps_path %>
                 </li>
 				
                 <li>
@@ -28,18 +28,12 @@
                 </li>
 				<li>
 					<% if user_signed_in? %>
-						<h4>User Admin</h4>
+						<h4>Add Data:</h4>
 					<li>
-						<%= link_to "New Data Set", new_dataset_path %>
+						<%= link_to "+ New Data Set", new_dataset_path %>
 					</li>
 					<li>
-						<%= link_to "View Data Sets", datasets_path %>
-					</li>
-					<li>
-						<%= link_to "New Map", new_map_path %>
-					</li>
-					<li>
-						<%= link_to "View Maps", maps_path %>
+						<%= link_to "+ New Map", new_map_path %>
 					</li>
 					<li>
 						<%= link_to "Edit Users", users_path %>
