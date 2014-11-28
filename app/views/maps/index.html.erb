@@ -6,6 +6,8 @@
       <th>Name</th>
       <th>User</th>
       <th>Dataset</th>
+	  <th>Geography</th>
+	  <th>Year</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,6 +18,8 @@
         <td><%= map.name %></td>
         <td><%= map.user.username %></td>
         <td><%= map.dataset.dataName %></td>
+		<td><%= map.dataset.geoName %></td>
+		<td><%= map.dataset.dataYear %></td>
         <td><%= link_to 'Show', map %></td>
         <td><%= link_to 'Edit', edit_map_path(map) %></td>
         <td><%= link_to 'Destroy', map, method: :delete, data: { confirm: 'Are you sure?' } %></td>
